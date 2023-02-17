@@ -3,18 +3,30 @@ package main;
 import dao.PessoaDAO;
 import domain.Pessoa;
 
+import java.util.List;
+
 public class App {
     public static void main(String[] args) {
 
         try{
             System.out.println("Iniciando Operação");
             var pessoaDAO = new PessoaDAO();
-            var pessoa
-                    = Pessoa.builder()
-                    .nome("Jose")
-                    .cpf("123456")
+//            var pessoa
+//                    = Pessoa.builder()
+//                    .nome("Jose")
+//                    .cpf("123456")
+//                    .build();
+//            pessoaDAO.savePessoa(pessoa);
+            var maria = Pessoa.builder()
+                    .nome("Maria")
+                    .cpf("34561")
                     .build();
-            pessoaDAO.savePessoa(pessoa);
+            //pessoaDAO.savePessoa(maria);
+//            var pessoas= pessoaDAO.getAll();
+//            System.out.println(pessoas);
+            var pessoaPeloCpf = pessoaDAO.getPessoaByCPF("34561");
+            System.out.println(pessoaPeloCpf);
+
             System.out.println("Operação realizada com sucesso!!!");
         }catch (Exception ex){
             System.out.println("Operação realizada com erro " + ex.getMessage());
