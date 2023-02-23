@@ -4,6 +4,7 @@ import domain.Pessoa;
 
 import javax.persistence.Query;
 import java.util.List;
+import java.util.UUID;
 
 public class PessoaDAO {
 
@@ -32,4 +33,21 @@ public class PessoaDAO {
         query.setParameter("cpf", cpfPorParametro);
         return (Pessoa) query.getSingleResult();
     }
+
+    public void updatePessoaById(UUID id){
+        //configPersistance.getEntityManager().getTransaction().begin();
+        Pessoa pessoa = configPersistance.getEntityManager().find(Pessoa.class, id);
+        configPersistance.getEntityManager().merge(pessoa);
+        configPersistance.getEntityManager().getTransaction().commit();
+    }
+
+    public void removePessoa(Pessoa p){
+        configPersistance.getEntityManager().remove(p);
+        configPersistance.getEntityManager().getTransaction().commit();
+    }
 }
+
+
+
+
+

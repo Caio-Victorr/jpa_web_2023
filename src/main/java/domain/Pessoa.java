@@ -22,6 +22,7 @@ public class Pessoa {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
+    @Column(nullable = false)
     private String nome;
     @Column(unique = true)
     private String cpf;
